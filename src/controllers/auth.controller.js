@@ -74,3 +74,35 @@ export const profile = async (req, res) => {
         email: userFound.email
     });
 }
+
+// Professionals
+
+export const registerP = async (req, res) => {
+    const { name, lastname, email, password } = req.body
+
+    try {
+        const professionalemailFound = await Professional.findOne({ email });
+        if (professionalemailFound) return res.status(400).json({ message: "La direccion de correo ya se encuentra registrada" });
+
+        const passwordhash = await bcrypt.hash(password, 10);
+
+        const newProfessional = new Professional({
+            name,
+            lastname,
+            email,
+            password: passwordhash
+        });
+
+        const professionalSaved = await newProfessional.save();
+        const token = await createAccesToken({ id: professionalSaved._id });
+        res.cookie("token", token);
+        res.json({
+            id: professionalSaved._id,
+            name: professionalSaved.name,
+            lastname: professionalSaved.lastname,
+            email: professionalSaved.email
+        })
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
