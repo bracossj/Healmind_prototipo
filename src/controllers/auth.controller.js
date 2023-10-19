@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import { createAccesToken } from '../libs/jwt.js';
 
 export const register = async (req, res) => {
-    const { name, lastname, email, password } = req.body
+    const { name, lastname, age, email, password } = req.body
 
     try {
         const UseremailFound = await User.findOne({ email });
@@ -15,6 +15,7 @@ export const register = async (req, res) => {
         const newUser = new User({
             name,
             lastname,
+            age,
             email,
             password: passwordhash
         });
@@ -26,6 +27,7 @@ export const register = async (req, res) => {
             id: userSaved._id,
             name: userSaved.name,
             lastname: userSaved.lastname,
+            age: userSaved.age,
             email: userSaved.email
         })
     } catch (error) {
@@ -71,6 +73,7 @@ export const profile = async (req, res) => {
         id: userFound.id,
         name: userFound.name,
         lastname: userFound.lastname,
+        age: userFound.age,
         email: userFound.email
     });
 }

@@ -1,15 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import AuthPage from './pages/page_auth'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/login_page';
+import RegisterPage from './pages/register_page';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<h1>HealMind Home</h1>}></Route>
-        <Route path='/auth' element={<AuthPage />}></Route>
-        <Route path='/perfil' element={<h1>Perfil</h1>}></Route>
-        <Route path='/asistentevirtual' element={<h1>Asistente Virtual</h1>}></Route>
+        <Route path='/' element={<h1>Home</h1>}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/profile' element={<h1>Profile</h1>}></Route>
+        <Route path='/assistent' element={<h1>Virtual Assistent</h1>}></Route>
       </Routes>
     </BrowserRouter>
   )
