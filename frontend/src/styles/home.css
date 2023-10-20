@@ -1,0 +1,46 @@
+.navbarhome {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #89a8f0;
+    padding: 5px 20px;
+    color: white;
+}
+
+.title_logo {
+    display: flex;
+    align-items: center;
+}
+
+.titlehome {
+    padding: 15px 20px;
+    font-size: 30px;
+    color: white;
+}
+
+.logonav {
+    width: 60px;
+    height: 60px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration-line: none;
+    padding: 15px 30px;
+    margin: 0px 10px;
+    border: none;
+    background-color: #5A8CF2;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.nav-links a:hover {
+    background-color: #4254c0;
+    transform: translateY(-2px);
+}

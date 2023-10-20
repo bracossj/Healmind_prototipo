@@ -19,7 +19,7 @@ function LoginPage() {
                     </div>
 
                     <div className="inputform">
-                        <input  {...register("password", { required: true })} className="input" placeholder='a' />
+                        <input  {...register("password", { required: true })} className="input" placeholder='a' type="password" />
                         <label className="labelform">Contraseña</label>
                     </div>
 
