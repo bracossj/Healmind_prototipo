@@ -7,14 +7,13 @@ body {
     font-family: "lato", sans-serif;
 }
 
-.login {
-    background: url('../img/login.jpg') no-repeat center center fixed;
+.auth {
+    background: url('../img/auth.jpg') no-repeat center center fixed;
     background-size: cover;
-}
-
-.register {
-    background: url('../img/register.jpg') no-repeat center center fixed;
-    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .formpage {

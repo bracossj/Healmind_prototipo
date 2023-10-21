@@ -11,9 +11,9 @@ function HomePage() {
             </div>
             <ul className="nav-links">
                 <li><a href="/">Inicio</a></li>
-                <li><a href="/servicios">Servicios</a></li>
-                <li><a href="/contacto">Contacto</a></li>
-                <li><a href="/login">Ingresar</a></li>
+                <li><a href="/">Servicios</a></li>
+                <li><a href="/">Contacto</a></li>
+                <li><a href="/auth">Ingresar</a></li>
             </ul>
         </nav>
     )
