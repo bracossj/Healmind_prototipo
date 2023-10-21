@@ -78,12 +78,16 @@ body {
 .section_disorders {
     display: flex;
     justify-content: space-between;
+    height: 20rem;
+    gap: 1rem;
 }
 
 .disorders {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
     background-color: #89a8f0;
     padding: 20px;
-    border-radius: 10% 20%;
-    margin-right: 10px;
+    width: 200px;
+    height: 400px;
+    border-radius: 10% 25%;
 }
