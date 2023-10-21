@@ -1,6 +1,10 @@
+.home {
+    width: 100%;
+}
+
 .navbarhome {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #89a8f0;
     padding: 5px 20px;
@@ -13,8 +17,8 @@
 }
 
 .titlehome {
-    padding: 15px 20px;
-    font-size: 30px;
+    padding: 0px 15px;
+    font-size: 40px;
     color: white;
 }
 
@@ -29,9 +33,11 @@
 }
 
 .nav-links a {
+    display: flex;
+    align-items: center;
     text-decoration-line: none;
     padding: 15px 30px;
-    margin: 0px 10px;
+    margin: 10px;
     border: none;
     background-color: #5A8CF2;
     color: white;
@@ -42,5 +48,5 @@
 
 .nav-links a:hover {
     background-color: #4254c0;
-    transform: translateY(-2px);
+    transform: translateY(-4px);
 }

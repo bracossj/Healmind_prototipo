@@ -29,7 +29,7 @@ function LoginPage({ switchToRegister }) {
                 <div className="buttons">
                     <a href="#" onClick={switchToRegister} className='button'>No tienes cuenta?</a>
 
-                    <button type="submit" className="button">Ingresar</button>
+                    <button type="submit" className="button">Iniciar sesión</button>
                 </div>
             </form>
         </div>
