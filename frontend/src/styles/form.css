@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "lato", sans-serif;
+    font-weight: bold;
 }
 
 .auth {
@@ -28,7 +29,7 @@ body {
     width: 400px;
     border-radius: 8px;
     padding: 20px 40px;
-    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
 .titleform {
@@ -82,8 +83,10 @@ body {
 }
 
 .button {
+    display: flex;
+    align-items: center;
     text-decoration-line: none;
-    padding: 15px 30px;
+    padding: 15px 20px;
     border: none;
     background-color: #5A8CF2;
     color: white;
@@ -95,7 +98,7 @@ body {
 
 .button:hover {
     background-color: #4254c0;
-    transform: translateY(-2px);
+    transform: scale(0.9);
 }
 
 .input:focus+.labelform {
