@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import '../styles/form.css';
 import 'animate.css';
 import { BiArrowBack } from 'react-icons/bi';
+import { registerRequest } from '../api/auth';
 
 function LoginPage({ switchToRegister }) {
     const { register, handleSubmit } = useForm();
@@ -42,9 +43,10 @@ function LoginPage({ switchToRegister }) {
 function RegisterPage({ switchToLogin }) {
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = (values) => {
-        console.log(values);
-    };
+    const onSubmit = (async (values) => {
+        const res = await registerRequest(values);
+        console.log(res);
+    });
 
     return (
         <div className="auth">
@@ -62,7 +64,7 @@ function RegisterPage({ switchToLogin }) {
                 </div>
 
                 <div className="inputform">
-                    <input {...register("edad", { required: true })} className="input" placeholder='a' />
+                    <input {...register("age", { required: true })} className="input" placeholder='a' />
                     <label className="labelform">Edad</label>
                 </div>
 
