@@ -7,10 +7,10 @@ function HomePage() {
 
     return (
         <div>
-            <nav className="navbarhome">
+            <header className="header">
                 <div className="title_logo">
-                    <h1 className="titlehome">HealMind</h1>
-                    <img src={logo} alt="" className="logonav" />
+                    <h2 className="titlehome">HealMind</h2>
+                    <img src={logo} alt="" className="logohome" />
                 </div>
 
                 <ul className="nav-links">
@@ -22,7 +22,8 @@ function HomePage() {
                 <div className="nav-links">
                     <a href="/auth">Ingresar <BiLogIn size="20px" /></a>
                 </div>
-            </nav>
+            </header>
+
             <div className="content">
                 <section className="sec">
                     <h1 className="tittleshome">¿Que es la salud mental?</h1>

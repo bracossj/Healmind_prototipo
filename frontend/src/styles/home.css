@@ -2,7 +2,7 @@ body {
     background: #B0C5FF;
 }
 
-.navbarhome {
+.header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -11,20 +11,23 @@ body {
     color: white;
     border-bottom: 1px solid #5A8CF2;
     box-shadow: 0 15px 20px rgba(92, 99, 105, .2);
+    position: sticky;
+    top: 0px;
 }
 
 .title_logo {
     display: flex;
     align-items: center;
+    font-size: 25px;
 }
 
 .titlehome {
     padding: 0px 15px;
-    font-size: 40px;
+    
     color: white;
 }
 
-.logonav {
+.logohome {
     width: 60px;
     height: 60px;
 }
