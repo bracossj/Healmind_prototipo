@@ -3,14 +3,17 @@ import { useForm } from 'react-hook-form';
 import '../styles/form.css';
 import 'animate.css';
 import { BiArrowBack } from 'react-icons/bi';
-import { registerRequest } from '../api/auth';
+import { registerRequest, loginRequest } from '../api/auth';
+import { useNavigate } from "react-router-dom";
 
 function LoginPage({ switchToRegister }) {
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
-    const onSubmit = (values) => {
-        console.log(values);
-    };
+    const onSubmit = (async (values) => {
+        const res = await loginRequest(values);
+        navigate("/principal")
+    });
 
     return (
         <div className='auth'>
@@ -42,10 +45,11 @@ function LoginPage({ switchToRegister }) {
 
 function RegisterPage({ switchToLogin }) {
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = (async (values) => {
         const res = await registerRequest(values);
-        console.log(res);
+        navigate("/principal")
     });
 
     return (
