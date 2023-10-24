@@ -1,20 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
-body {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "lato", sans-serif;
-    font-weight: bold;
-}
-
 .auth {
+    box-sizing: border-box;
     background: url('../img/auth.jpg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: auto;
 }
 
 .formpage {

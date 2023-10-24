@@ -1,0 +1,28 @@
+body,
+html {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: rgb(127, 225, 255);
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: aquamarine;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logoimg {
+    height: 50px;
+}
+
+.navbuttons {
+    margin-left: 1rem;
+    text-decoration: none;
+}

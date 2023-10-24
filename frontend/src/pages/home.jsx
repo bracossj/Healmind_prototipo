@@ -1,26 +1,21 @@
-import '../styles/home.css';
+import style from '../components/home.module.css';
 import logo from '../img/logo.png';
-import { BiLogIn } from "react-icons/bi";
 
 function HomePage() {
 
     return (
         <div>
-            <header className="header">
-                <div className="title_logo">
-                    <h2 className="titlehome">HealMind</h2>
-                    <img src={logo} alt="" className="logohome" />
+            <header className={style.header}>
+                <div className={style.logo}>
+                    <img className={style.logoimg} src={logo} alt="" />
+                    <h2 >HealMind</h2>
                 </div>
-
-                <ul className="nav-links">
-                    <a href="/">Inicio</a>
-                    <a href="/">Servicios</a>
-                    <a href="/">Contacto</a>
-                </ul>
-
-                <div className="nav-links">
-                    <a href="/auth">Ingresar <BiLogIn size="20px" /></a>
-                </div>
+                <nav >
+                    <a className={style.navbuttons} href="/">Inicio</a>
+                    <a className={style.navbuttons} href="/">Servicios</a>
+                    <a className={style.navbuttons} href="/">Contacto</a>
+                    <a className={style.navbuttons} href="/auth">Ingresar</a>
+                </nav>
             </header>
         </div>
     )
