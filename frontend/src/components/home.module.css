@@ -1,28 +1,63 @@
 body,
 html {
-    box-sizing: border-box;
     margin: 0;
-    background-color: rgb(127, 225, 255);
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.HomePage {
+    background-image: url('../img/home.jpg');
+    background-size: cover;
+    height: 100vh;
 }
 
 .header {
+    
+    color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 10px;
-    background-color: aquamarine;
+    backdrop-filter: blur(10px);
 }
 
 .logo {
     display: flex;
     align-items: center;
+    font-size: 23px;
 }
 
 .logoimg {
     height: 50px;
 }
 
-.navbuttons {
-    margin-left: 1rem;
+.nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.nav ul li a {
+    color: white;
     text-decoration: none;
+    font-weight: bold;
+}
+
+.nav ul li a:hover {
+    color: blue;
+    transition: .3s;
+}
+
+.buttoningresar {
+    border: none;
+    background: blue;
+    padding: 12px 30px;
+    border-radius: 30px;
+    color: white;
+    font-size: 15px;
+    transition: .4s;
+}
+
+.buttoningresar:hover {
+    transform: scale(1.2);
+    cursor: pointer;
 }

@@ -4,18 +4,20 @@ import logo from '../img/logo.png';
 function HomePage() {
 
     return (
-        <div>
+        <div className={style.HomePage}>
             <header className={style.header}>
                 <div className={style.logo}>
                     <img className={style.logoimg} src={logo} alt="" />
                     <h2 >HealMind</h2>
                 </div>
-                <nav >
-                    <a className={style.navbuttons} href="/">Inicio</a>
-                    <a className={style.navbuttons} href="/">Servicios</a>
-                    <a className={style.navbuttons} href="/">Contacto</a>
-                    <a className={style.navbuttons} href="/auth">Ingresar</a>
+                <nav className={style.nav}>
+                    <ul>
+                        <li><a className={style.navbuttons} href="/">Inicio</a></li>
+                        <li><a className={style.navbuttons} href="/">Importancia</a></li>
+                        <li><a className={style.navbuttons} href="/">Trastornos</a></li>
+                    </ul>
                 </nav>
+                <button type="button" className={style.buttoningresar} href="/auth">Ingresar</button>
             </header>
         </div>
     )
