@@ -1,6 +1,5 @@
 .auth {
-    box-sizing: border-box;
-    background: url('../img/auth.jpg') no-repeat center center fixed;
+    background-image: url('../img/home.jpg');
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -17,37 +16,35 @@
 }
 
 .form {
-    background-color: #89a8f0;
     width: 400px;
     border-radius: 8px;
     padding: 20px 40px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .titleform {
     font-size: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     color: white;
-    
+
 }
 
 .inputform {
     position: relative;
     height: 45px;
-    width: 90%;
+    width: 100%;
     margin-bottom: 17px;
 }
 
 .input {
     position: absolute;
-    top: 0px;
-    left: 0px;
     height: 100%;
-    width: 100%;
-    border: 1px solid #DADCE0;
+    width: 95%;
+    border: 2px solid #DADCE0;
+    padding-left: 15px;
     border-radius: 7px;
     font-size: 16px;
-    padding: 0 20px;
     outline: none;
     background: none;
     z-index: 1;
@@ -56,16 +53,11 @@
 
 .labelform {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    padding: 0 4px;
-    background-color: #89a8f0;
+    top: 18px;
+    left: 12px;
     color: #DADCE0;
-    font-size: 16px;
+    font-size: 15px;
     transition: 0.5s;
-    z-index: 0;
-    font-family: "lato", sans-serif;
-    font-weight: bold;
 }
 
 ::placeholder {
@@ -75,45 +67,34 @@
 .buttons {
     display: flex;
     justify-content: space-between;
-    font-family: "lato", sans-serif;
-    font-weight: bold;
+    padding-top: 20px;
 }
 
 .button {
-    display: flex;
-    align-items: center;
-    text-decoration-line: none;
-    padding: 15px 20px;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
     border: none;
-    background-color: #5A8CF2;
+    background: #3485d4;
+    padding: 15px 20px;
+    border-radius: 30px;
     color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 30px;
-    font-weight: bold;
+    font-size: 15px;
+    transition: .4s;
 }
 
 .button:hover {
-    background-color: #4254c0;
-    transform: scale(0.9);
+    transform: scale(1.2);
+    cursor: pointer;
 }
 
 .input:focus+.labelform {
-    top: -7px;
-    left: 3px;
-    z-index: 10;
     font-size: 14px;
-    font-weight: 600;
-    color: #4254c0;
+    color: transparent;
 }
 
 .input:not(:placeholder-shown)+.labelform {
-    top: -7px;
-    left: 3px;
-    z-index: 10;
     font-size: 14px;
-    font-weight: 600;
+    display: none;
 }
 
 .input:focus {

@@ -17,7 +17,7 @@ function HomePage() {
                         <li><a className={style.navbuttons} href="/">Trastornos</a></li>
                     </ul>
                 </nav>
-                <button type="button" className={style.buttoningresar} href="/auth">Ingresar</button>
+                <a className={style.buttoningresar} href="/auth">Ingresar</a>
             </header>
         </div>
     )

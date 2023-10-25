@@ -12,7 +12,7 @@ html {
 }
 
 .header {
-    
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     color: white;
     display: flex;
     justify-content: space-evenly;
@@ -36,20 +36,22 @@ html {
     padding: 10px 20px;
 }
 
+.nav ul li:hover {
+    background: #3485d4;
+    border-radius: 30px;
+    transition: .3s;
+}
+
 .nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
 
-.nav ul li a:hover {
-    color: blue;
-    transition: .3s;
-}
-
 .buttoningresar {
+    text-decoration: none;
     border: none;
-    background: blue;
+    background: #3485d4;
     padding: 12px 30px;
     border-radius: 30px;
     color: white;
