@@ -1,4 +1,4 @@
-import logo from '../img/logo.png';
+import style from '../components/principal.module.css';
 
 function PrincipalPage() {
 

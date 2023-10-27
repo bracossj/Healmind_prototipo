@@ -17,7 +17,7 @@ function HomePage() {
                         <li><a className={style.navbuttons} href="/">Trastornos</a></li>
                     </ul>
                 </nav>
-                <a className={style.buttoningresar} href="/auth">Ingresar</a>
+                <a className={style.buttoningresar} href="/auth">Ingresar<ion-icon name="log-in"></ion-icon></a>
             </header>
         </div>
     )

@@ -30,7 +30,7 @@ function LoginPage({ switchToRegister }) {
                 </div>
 
                 <div className={style.buttons}>
-                    <a className={style.button} href="/">a</a>
+                    <a className={style.button} href="/"><ion-icon name="arrow-back"></ion-icon></a>
 
                     <a href="#" onClick={switchToRegister} className={style.button}>No tienes cuenta?</a>
 
@@ -81,7 +81,7 @@ function RegisterPage({ switchToLogin }) {
                 </div>
 
                 <div className={style.buttons}>
-                    <a className={style.button} href="/">a</a>
+                    <a className={style.button} href="/"><ion-icon name="arrow-back"></ion-icon></a>
 
                     <a href="#" onClick={switchToLogin} className={style.button}>Tienes cuenta?</a>
 
