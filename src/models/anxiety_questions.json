@@ -1,0 +1,60 @@
+{
+    "preguntas": [
+        {
+            "pregunta": "¿Experimentas miedo sin una causa aparente?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Tienes episodios de pánico repentinos?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Te resulta difícil concentrarte debido a preocupaciones constantes?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Tienes dificultades para controlar tus pensamientos?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Sientes que algo terrible va a suceder, incluso sin evidencia?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Evitas situaciones o lugares?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Has experimentado sensaciones físicas como palpitaciones o temblores?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Tienes problemas para dormir debido a que sientes que te falta algo?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        }
+    ]
+}

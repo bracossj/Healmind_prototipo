@@ -1,0 +1,53 @@
+{
+    "preguntas": [
+        {
+            "pregunta": "¿Sientes que estás constantemente abrumado por las demandas de tu vida?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Te resulta difícil relajarte incluso en tu tiempo libre?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Sientes que no puedes controlar las situaciones de tu vida?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Tienes dificultades para dormir debido a una tensión?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Te encuentras irritado o impaciente con frecuencia?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Has notado cambios en tu apetito o peso?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        },
+        {
+            "pregunta": "¿Sientes que tienes demasiadas responsabilidades en el trabajo o en la escuela?",
+            "respuestas": [
+                "Sí",
+                "No"
+            ]
+        }
+    ]
+}
