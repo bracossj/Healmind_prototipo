@@ -99,3 +99,7 @@
 .input:focus {
     border: 2px solid #4254c0;
 }
+
+.errors {
+    color: red;
+}

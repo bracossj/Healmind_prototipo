@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import style from '../components/auth.module.css';
-import { registerRequest, loginRequest } from '../api/auth';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../context/authContext.jsx';
 
 function LoginPage({ switchToRegister }) {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { signin, errors: loginErrors } = useAuth();
     const navigate = useNavigate();
 
-    const onSubmit = (async (values) => {
-        const res = await loginRequest(values);
-        navigate("/principal")
+    const onSubmit = handleSubmit(async (values) => {
+        signin(values);
     });
 
     return (
@@ -23,11 +23,27 @@ function LoginPage({ switchToRegister }) {
                     <input {...register("email", { required: true })} className={style.input} placeholder='a' />
                     <label className={style.labelform}>Correo electrónico</label>
                 </div>
+                {
+                    errors.email && (
+                        <p className={style.errors}>Te falto este campo</p>
+                    )
+                }
 
                 <div className={style.inputform}>
                     <input {...register("password", { required: true })} className={style.input} placeholder='a' type="password" />
                     <label className={style.labelform}>Contraseña</label>
                 </div>
+                {
+                    errors.password && (
+                        <p className={style.errors}>Te falto este campo</p>
+                    )
+                }
+
+                {
+                    loginErrors.map((error, i) => (
+                        <p className={style.errors}>{error}</p>
+                    ))
+                }
 
                 <div className={style.buttons}>
                     <a className={style.button} href="/"><ion-icon name="arrow-back"></ion-icon></a>
@@ -42,12 +58,16 @@ function LoginPage({ switchToRegister }) {
 }
 
 function RegisterPage({ switchToLogin }) {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { signup, isAuthenticated, errors: registerErrors } = useAuth();
     const navigate = useNavigate();
 
-    const onSubmit = (async (values) => {
-        const res = await registerRequest(values);
-        navigate("/principal")
+    useEffect(() => {
+        if (isAuthenticated) navigate("/principal")
+    }, [isAuthenticated])
+
+    const onSubmit = handleSubmit(async (values) => {
+        signup(values);
     });
 
     return (
@@ -59,26 +79,57 @@ function RegisterPage({ switchToLogin }) {
                     <input {...register("name", { required: true })} className={style.input} placeholder='a' />
                     <label className={style.labelform}>Nombre</label>
                 </div>
+                {
+                    errors.name && (
+                        <p className={style.errors}>Te falto este campo</p>
+                    )
+                }
 
                 <div className={style.inputform}>
                     <input {...register("lastname", { required: true })} className={style.input} placeholder='a' />
                     <label className={style.labelform}>Apellido</label>
                 </div>
+                {
+                    errors.lastname && (
+                        <p className={style.errors}>Te falto este campo</p>
+                    )
+                }
 
                 <div className={style.inputform}>
                     <input {...register("age", { required: true })} className={style.input} placeholder='a' />
                     <label className={style.labelform}>Edad</label>
                 </div>
+                {
+                    errors.age && (
+                        <p className={style.errors}>Te falto este campo</p>
+                    )
+                }
 
                 <div className={style.inputform}>
                     <input {...register("email", { required: true })} className={style.input} placeholder='a' />
                     <label className={style.labelform}>Correo electrónico</label>
                 </div>
+                {
+                    errors.email && (
+                        <p className={style.errors}>Te falto este campo</p>
+                    )
+                }
 
                 <div className={style.inputform}>
                     <input {...register("password", { required: true })} className={style.input} placeholder='a' type="password" />
                     <label className={style.labelform}>Contraseña</label>
                 </div>
+                {
+                    errors.password && (
+                        <p className={style.errors}>Te falto este campo</p>
+                    )
+                }
+
+                {
+                    registerErrors.map((error, i) => (
+                        <p className={style.errors}>{error}</p>
+                    ))
+                }
 
                 <div className={style.buttons}>
                     <a className={style.button} href="/"><ion-icon name="arrow-back"></ion-icon></a>

@@ -7,7 +7,7 @@ export const registerSchema = z.object({
     lastname: z.string({
         required_error: "Apellido requerido"
     }),
-    age: z.number({
+    age: z.string({
         required_error: "Edad requerida"
     }),
     email: z.string({
