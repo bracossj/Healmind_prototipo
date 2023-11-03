@@ -71,7 +71,7 @@
 
 .button {
     text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: sans-serif;
     border: none;
     background: #3485d4;
     padding: 15px 20px;
@@ -101,5 +101,12 @@
 }
 
 .errors {
-    color: red;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(240, 58, 58);
+    color: white;
+    border-radius: 10px;
+    border: 1px solid white;
 }

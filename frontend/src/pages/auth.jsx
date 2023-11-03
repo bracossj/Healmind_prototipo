@@ -6,8 +6,12 @@ import { useAuth } from '../context/authContext.jsx';
 
 function LoginPage({ switchToRegister }) {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signin, errors: loginErrors } = useAuth();
+    const { signin, isAuthenticated, errors: loginErrors } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated) navigate("/principal")
+    }, [isAuthenticated])
 
     const onSubmit = handleSubmit(async (values) => {
         signin(values);
