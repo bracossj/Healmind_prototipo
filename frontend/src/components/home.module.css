@@ -6,18 +6,32 @@ html {
 }
 
 .HomePage {
-    background-image: url('../img/home.jpg');
+    background-color: white;
     background-size: cover;
     height: 100vh;
 }
 
 .header {
+    background-color: #287bff;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     color: white;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    backdrop-filter: blur(10px);
+}
+
+.fixedHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #287bff;
+    color: white;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 100;
 }
 
 .logo {
@@ -30,16 +44,26 @@ html {
     height: 50px;
 }
 
+.nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .nav ul li {
     list-style-type: none;
-    display: inline-block;
+}
+
+
+.navbuttons {
     padding: 10px 20px;
 }
 
-.nav ul li:hover {
-    background: #3485d4;
+.nav ul li:hover .navbuttons {
+    background: white;
     border-radius: 30px;
     transition: .3s;
+    color: #287bff;
 }
 
 .nav ul li a {
@@ -53,15 +77,197 @@ html {
     align-items: center;
     text-decoration: none;
     border: none;
-    background: #3485d4;
-    padding: 12px 30px;
+    background: white;
+    padding: 12px 25px;
     border-radius: 30px;
-    color: white;
+    color: #287bff;
     font-size: 18px;
-    transition: .4s;
+    transition: .3s;
 }
 
 .buttoningresar:hover {
-    transform: scale(1.2);
+    transform: scale(0.9);
     cursor: pointer;
+}
+
+.sections {
+    height: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.section1 {
+    padding-top: 96.25px;
+}
+
+.imgytext{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circulo {
+    width: 400px;
+    height: 400px;
+    background-color: #287bff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.imgsec1 {
+    padding-top: 15px;
+    width: 400px;
+}
+
+.section1 h1 {
+    font-size: 30px;
+    color: black;
+    margin: 0;
+}
+
+.section1 p {
+    max-width: 400px;
+    max-width: 400px;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: start;
+    padding: 0 40px;
+}
+
+.section2 {
+    background-color: #287bff;
+}
+
+.questionsec2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circulo2 {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.imgsec2{
+    padding: 60px 0;
+    width: 350px;
+}
+
+.section2 h1 {
+    font-size: 30px;
+    color: white;
+    margin: 0;
+    max-width: 400px;
+    max-width: 400px;
+}
+
+
+.section2 p {
+    font-size: 24px;
+    color: white;
+    max-width: 400px;
+    max-width: 600px;
+    line-height: 1.2;
+    text-align: start;
+    padding: 0 40px;
+}
+
+.section3 {
+    background-color: white;
+    flex-direction: column;
+}
+
+.trastornos{
+    display: flex;
+    flex-direction: row;
+}
+
+.section3 h1 {
+    font-size: 30px;
+    color: black;
+    margin: 0;
+    padding-bottom: 40px;
+}
+
+.section3 p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.cards {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    margin: 20px;
+}
+
+.cards .face{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.cards .front {
+    background-color: #287bff;
+    transform: perspective(600px) rotateY(0deg);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.cards .front img {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    align-items: center;
+}
+
+.cards .front h1 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    color: white;
+    background: rgba(0, 0, 0, .2);
+    text-align: center;
+    margin: 0;
+}
+
+.cards .back{
+    background-color: #287bff;
+    transform: perspective(600px) rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align:center;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.cards .back h3 {
+    font-size: 30px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.cards .back p{
+    letter-spacing: 1px;
+    margin: 10px;
+}
+
+.cards:hover .front{
+    transform: perspective(600px) rotateY(180deg);
+}
+
+.cards:hover .back{
+    transform: perspective(600px) rotateY(360deg);
 }
