@@ -10,7 +10,7 @@ function LoginPage({ switchToRegister }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isAuthenticated) navigate("/principal")
+        if (isAuthenticated) navigate("/principal#inicio")
     }, [isAuthenticated])
 
     const onSubmit = handleSubmit(async (values) => {
@@ -67,7 +67,7 @@ function RegisterPage({ switchToLogin }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isAuthenticated) navigate("/principal")
+        if (isAuthenticated) navigate("/principal#inicio")
     }, [isAuthenticated])
 
     const onSubmit = handleSubmit(async (values) => {

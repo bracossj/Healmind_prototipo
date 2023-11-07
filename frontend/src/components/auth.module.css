@@ -73,16 +73,16 @@
     text-decoration: none;
     font-family: sans-serif;
     border: none;
-    background: #3485d4;
+    background: white;
     padding: 15px 20px;
     border-radius: 30px;
-    color: white;
-    font-size: 15px;
+    color: #287bff;
+    font-size: 18px;
     transition: .4s;
 }
 
 .button:hover {
-    transform: scale(1.2);
+    transform: scale(0.8);
     cursor: pointer;
 }
 

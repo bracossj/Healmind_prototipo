@@ -103,7 +103,7 @@ html {
     padding-top: 96.25px;
 }
 
-.imgytext{
+.imgytext {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,11 +115,16 @@ html {
     background-color: #287bff;
     border-radius: 50%;
     overflow: hidden;
+    transition: .3s;
 }
 
 .imgsec1 {
     padding-top: 15px;
     width: 400px;
+}
+
+.circulo:hover {
+    transform: scale(0.9);
 }
 
 .section1 h1 {
@@ -141,7 +146,7 @@ html {
     background-color: #287bff;
 }
 
-.questionsec2{
+.questionsec2 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,10 +158,15 @@ html {
     background-color: white;
     border-radius: 50%;
     overflow: hidden;
+    transition: 0.3s;
 }
 
-.imgsec2{
-    padding: 60px 0;
+.circulo2:hover {
+    transform: scale(0.9);
+}
+
+.imgsec2 {
+    padding:60px 0;
     width: 350px;
 }
 
@@ -184,7 +194,7 @@ html {
     flex-direction: column;
 }
 
-.trastornos{
+.trastornos {
     display: flex;
     flex-direction: row;
 }
@@ -193,6 +203,9 @@ html {
     font-size: 30px;
     color: black;
     margin: 0;
+}
+
+.tittletrastornos {
     padding-bottom: 40px;
 }
 
@@ -208,7 +221,7 @@ html {
     margin: 20px;
 }
 
-.cards .face{
+.cards .face {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -243,13 +256,13 @@ html {
     margin: 0;
 }
 
-.cards .back{
+.cards .back {
     background-color: #287bff;
     transform: perspective(600px) rotateY(180deg);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    text-align:center;
+    text-align: center;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
@@ -259,15 +272,15 @@ html {
     letter-spacing: 2px;
 }
 
-.cards .back p{
+.cards .back p {
     letter-spacing: 1px;
     margin: 10px;
 }
 
-.cards:hover .front{
+.cards:hover .front {
     transform: perspective(600px) rotateY(180deg);
 }
 
-.cards:hover .back{
+.cards:hover .back {
     transform: perspective(600px) rotateY(360deg);
 }
