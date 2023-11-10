@@ -2,6 +2,7 @@ import style from '../components/principal.module.css';
 import stressQuestions from '../../../src/models/stress_questions.json';
 import anxietyQuestions from '../../../src/models/anxiety_questions.json';
 import depressionQuestions from '../../../src/models/depression_questions.json';
+import healbot from '../img/healbot.png';
 import React, { useState, useEffect } from 'react';
 
 function PrincipalPage() {
@@ -101,37 +102,38 @@ function PrincipalPage() {
                     </li>
                 </ul>
             </div>
-            <div className={style.contenido}>
-                <section id="inicio" style={{ display: selectedSection === 'inicio' ? 'block' : 'none' }}>
+            <div>
+                <section className={style.contenido} id="inicio" style={{ display: selectedSection === 'inicio' ? 'flex' : 'none' }}>
                     Inicio
                 </section>
-                <section id="healbot" style={{ display: selectedSection === 'healbot' ? 'block' : 'none' }}>
+                <section className={style.contenido} id="healbot" style={{ display: selectedSection === 'healbot' ? 'flex' : 'none' }}>
                     <div className={style.chat_box}>
                         <div className={style.chat_chat}>
                             <h1 className={style.chat_header}>HealBot</h1>
-                            <div className={style.chat_container}>
-                                {indicePregunta < preguntasPorTipo[tipoActual].length && (
-                                    <div className={style.mensaje_asistente}>
-                                        {preguntasPorTipo[tipoActual][indicePregunta].pregunta}
-                                    </div>
-                                )}
-                                {indicePregunta < preguntasPorTipo[tipoActual].length && (
-                                    <div className={style.opciones}>
-                                        <button className={style.button} onClick={() => handleRespuesta('Sí')}>Sí</button>
-                                        <button className={style.button} onClick={() => handleRespuesta('No')}>No</button>
-                                    </div>
-                                )}
-                            </div>
+                            <img className={style.botimg} src={healbot} alt="" />
+                        </div>
+                        <div className={style.chat_container}>
+                            {indicePregunta < preguntasPorTipo[tipoActual].length && (
+                                <div className={style.mensaje_asistente}>
+                                    {preguntasPorTipo[tipoActual][indicePregunta].pregunta}
+                                </div>
+                            )}
+                            {indicePregunta < preguntasPorTipo[tipoActual].length && (
+                                <div className={style.opciones}>
+                                    <button className={style.button} onClick={() => handleRespuesta('Sí')}>Sí</button>
+                                    <button className={style.button} onClick={() => handleRespuesta('No')}>No</button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </section>
-                <section id="asesor" style={{ display: selectedSection === 'asesor' ? 'block' : 'none' }}>
+                <section className={style.contenido} id="asesor" style={{ display: selectedSection === 'asesor' ? 'flex' : 'none' }}>
                     asesor
                 </section>
-                <section id="historial" style={{ display: selectedSection === 'historial' ? 'block' : 'none' }}>
+                <section className={style.contenido} id="historial" style={{ display: selectedSection === 'historial' ? 'flex' : 'none' }}>
                     historial
                 </section>
-                <section id="logout" style={{ display: selectedSection === 'logout' ? 'block' : 'none' }}>
+                <section className={style.contenido} id="logout" style={{ display: selectedSection === 'logout' ? 'flex' : 'none' }}>
                     logout
                 </section>
             </div>
