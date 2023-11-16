@@ -109,8 +109,6 @@
     min-height: 100vh;
 }
 
-/* ESTILOS DE HEALBOT */
-
 .chat_box {
     margin: auto;
     border-radius: 5px;
@@ -175,4 +173,21 @@
 .button:hover {
     transform: scale(0.8);
     cursor: pointer;
+}
+
+.chat_boxR {
+    margin: auto;
+    border-radius: 5px;
+    width: 600px;
+    height: 300px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    background-color: #287bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resultadodiagnostico {
+    margin: 0 50px;
+    color: white;
 }

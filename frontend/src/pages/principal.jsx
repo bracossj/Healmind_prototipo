@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 function PrincipalPage() {
 
+    const { user } = useAuth();
+
     const [selectedSection, setSelectedSection] = useState('inicio');
     const navigate = useNavigate();
     const handleSectionChange = (sectionId) => {
@@ -31,6 +33,7 @@ function PrincipalPage() {
         ansiedad: [],
         depresión: [],
     });
+    const [diagnóstico, setDiagnóstico] = useState(null);
 
     useEffect(() => {
         setPreguntasPorTipo({
@@ -42,7 +45,7 @@ function PrincipalPage() {
 
     const handleRespuesta = (respuesta) => {
         const preguntaActual = preguntasPorTipo[tipoActual][indicePregunta].pregunta;
-        const nuevaRespuesta = { pregunta: preguntaActual, respuesta };
+        const nuevaRespuesta = { pregunta: preguntaActual, respuesta, tipo: tipoActual };
         const nuevasRespuestas = [...respuestas, nuevaRespuesta];
 
         setRespuestas(nuevasRespuestas);
@@ -60,30 +63,23 @@ function PrincipalPage() {
         }
     };
 
-
     const evaluarRespuestas = (respuestas) => {
-        console.log('Respuestas finales:', respuestas);
-
         const respuestasEstrés = respuestas.filter((respuesta) => respuesta.tipo === 'estrés');
         const respuestasAnsiedad = respuestas.filter((respuesta) => respuesta.tipo === 'ansiedad');
         const respuestasDepresión = respuestas.filter((respuesta) => respuesta.tipo === 'depresión');
-
-        const preguntasEstrés = preguntasPorTipo.estrés.map((pregunta) => pregunta.pregunta);
-        const preguntasAnsiedad = preguntasPorTipo.ansiedad.map((pregunta) => pregunta.pregunta);
-        const preguntasDepresión = preguntasPorTipo.depresión.map((pregunta) => pregunta.pregunta);
-
         const umbralDiagnóstico = 4;
 
-        const diagnóstico = {
-            estrés: respuestasEstrés.filter((respuesta) => respuesta.respuesta === 'Sí').length >= umbralDiagnóstico,
-            ansiedad: respuestasAnsiedad.filter((respuesta) => respuesta.respuesta === 'Sí').length >= umbralDiagnóstico,
-            depresión: respuestasDepresión.filter((respuesta) => respuesta.respuesta === 'Sí').length >= umbralDiagnóstico,
+        const contarRespuestasPositivas = (respuestas) => {
+            return respuestas.filter((respuesta) => respuesta.respuesta === 'Sí').length;
         };
 
-        console.log('Diagnóstico:', diagnóstico);
+        setDiagnóstico({
+            estrés: contarRespuestasPositivas(respuestasEstrés) >= umbralDiagnóstico,
+            ansiedad: contarRespuestasPositivas(respuestasAnsiedad) >= umbralDiagnóstico,
+            depresión: contarRespuestasPositivas(respuestasDepresión) >= umbralDiagnóstico,
+        });
+        setSelectedSection('healbotresult');
     };
-
-
 
     return (
         <div className={style.container}>
@@ -146,18 +142,34 @@ function PrincipalPage() {
                         </div>
                     </div>
                 </section>
+                <section className={style.contenido} id="healbotresult" style={{ display: selectedSection === 'healbotresult' ? 'flex' : 'none' }}>
+                    <div className={style.chat_boxR}>
+                        <h1 className={style.resultadodiagnostico}>
+                            {diagnóstico && (
+                                <>
+                                    {diagnóstico.estrés || diagnóstico.ansiedad || diagnóstico.depresión
+                                        ? 'Oh no, parece que padeces de:'
+                                        : '¡Felicidades! Estás mentalmente sano. Regresa en 1 o 2 semanas para aplicarte otro diagnóstico.'}
+
+                                    {diagnóstico.estrés && <div>Estrés</div>}
+
+                                    {diagnóstico.ansiedad && <div>Ansiedad</div>}
+
+                                    {diagnóstico.depresión && <div>Depresión</div>}
+                                </>
+                            )}
+                        </h1>
+                    </div>
+                </section>
                 <section className={style.contenido} id="asesor" style={{ display: selectedSection === 'asesor' ? 'flex' : 'none' }}>
                     asesor
                 </section>
                 <section className={style.contenido} id="historial" style={{ display: selectedSection === 'historial' ? 'flex' : 'none' }}>
                     historial
                 </section>
-                <section className={style.contenido} id="logout" style={{ display: selectedSection === 'logout' ? 'flex' : 'none' }}>
-                    logout
-                </section>
+                <section className={style.contenido} id="logout" style={{ display: selectedSection === 'logout' ? 'flex' : 'none' }}></section>
             </div>
         </div >
-
     )
 }
 

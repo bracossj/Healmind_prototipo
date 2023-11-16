@@ -5,7 +5,6 @@ import PrincipalPage from './pages/principal';
 import { AuthProvider } from './context/authContext'
 import ProtectedRoute from './ProtectedRoute';
 
-
 function App() {
   return (
     <AuthProvider>
