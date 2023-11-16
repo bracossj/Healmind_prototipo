@@ -7,7 +7,7 @@ export function createAccesToken(paylod) {
             paylod,
             token_secret,
             {
-                expiresIn: '1d'
+                expiresIn: '2h'
             },
             (err, token) => {
                 if (err) reject(err);

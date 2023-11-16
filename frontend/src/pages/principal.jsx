@@ -2,16 +2,25 @@ import style from '../components/principal.module.css';
 import stressQuestions from '../../../src/models/stress_questions.json';
 import anxietyQuestions from '../../../src/models/anxiety_questions.json';
 import depressionQuestions from '../../../src/models/depression_questions.json';
+import { useAuth } from '../context/authContext.jsx';
 import healbot from '../img/healbot.png';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function PrincipalPage() {
 
     const [selectedSection, setSelectedSection] = useState('inicio');
-
+    const navigate = useNavigate();
     const handleSectionChange = (sectionId) => {
-        setSelectedSection(sectionId);
+        if (sectionId === 'logout') {
+            signout();
+            navigate("/");
+        } else {
+            setSelectedSection(sectionId);
+        }
     };
+
+    const { signout } = useAuth();
 
     const [tiposPregunta, setTiposPregunta] = useState(['estrés', 'ansiedad', 'depresión']);
     const [respuestas, setRespuestas] = useState([]);
@@ -32,7 +41,10 @@ function PrincipalPage() {
     }, []);
 
     const handleRespuesta = (respuesta) => {
-        const nuevasRespuestas = [...respuestas, { tipo: tipoActual, respuesta }];
+        const preguntaActual = preguntasPorTipo[tipoActual][indicePregunta].pregunta;
+        const nuevaRespuesta = { pregunta: preguntaActual, respuesta };
+        const nuevasRespuestas = [...respuestas, nuevaRespuesta];
+
         setRespuestas(nuevasRespuestas);
 
         if (indicePregunta < preguntasPorTipo[tipoActual].length - 1) {
@@ -48,12 +60,17 @@ function PrincipalPage() {
         }
     };
 
+
     const evaluarRespuestas = (respuestas) => {
         console.log('Respuestas finales:', respuestas);
 
         const respuestasEstrés = respuestas.filter((respuesta) => respuesta.tipo === 'estrés');
         const respuestasAnsiedad = respuestas.filter((respuesta) => respuesta.tipo === 'ansiedad');
         const respuestasDepresión = respuestas.filter((respuesta) => respuesta.tipo === 'depresión');
+
+        const preguntasEstrés = preguntasPorTipo.estrés.map((pregunta) => pregunta.pregunta);
+        const preguntasAnsiedad = preguntasPorTipo.ansiedad.map((pregunta) => pregunta.pregunta);
+        const preguntasDepresión = preguntasPorTipo.depresión.map((pregunta) => pregunta.pregunta);
 
         const umbralDiagnóstico = 4;
 
@@ -65,6 +82,8 @@ function PrincipalPage() {
 
         console.log('Diagnóstico:', diagnóstico);
     };
+
+
 
     return (
         <div className={style.container}>
