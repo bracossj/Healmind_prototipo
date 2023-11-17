@@ -12,6 +12,9 @@ const historialSchema = new mongoose.Schema({
         tipo: String,
         resultado: Boolean,
     }],
+    fecha: {
+        type: Date,
+    },
 });
 
 export default mongoose.model('Historial', historialSchema);

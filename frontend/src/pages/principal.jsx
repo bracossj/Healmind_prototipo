@@ -106,6 +106,21 @@ function PrincipalPage() {
         window.location.reload();
     }
 
+    const [diagnosticos, setDiagnosticos] = useState([]);
+    useEffect(() => {
+        const cargarDiagnosticos = async () => {
+            try {
+                const response = await obtenerDiagnosticos(user.id);
+                setDiagnosticos(response.diagnosticos);
+            } catch (error) {
+                console.error('Error al cargar el historial de diagnósticos:', error);
+            }
+        };
+
+        cargarDiagnosticos();
+    }, [user.id]);
+
+
     return (
         <div className={style.container}>
             <div className={style.navigation}>
@@ -143,11 +158,12 @@ function PrincipalPage() {
                 </ul>
             </div>
             <div>
-                <section className={style.contenido} id="inicio" style={{ display: selectedSection === 'inicio' ? 'flex' : 'none' }}>
+                <section className={style.contenidodeinicio} id="inicio" style={{ display: selectedSection === 'inicio' ? 'flex' : 'none' }}>
+                    <h1 className={style.iniciotitulo}>
+                        {'Bienvenid@ ' + user.name}
+                    </h1>
                     <div className={style.boxsaludo}>
-                        <h1 className={style.iniciosaludo}>
-                            {'Hola ' + user.name}
-                        </h1>
+                        <h1>El adolescente vive una etapa de adaptación a los cambios vertiginosos, que representa una etapa crítica en el inicio y fortalecimiento de conductas de riesgo. El objetivo fue describir la producción científica indexada en la base de datos Scopus sobre el tema de salud mental en adolescentes universitarios desde 2018-2020 en Latinoamérica. La metodología fue una revisión exhaustiva de artículos, utilizando términos como: salud mental, estrés, ansiedad e ideación suicida. Los criterios incluidos fueron: año, idioma, metodología, instrumentos validados, resultados y conclusión. Los resultados evidenciaron 11 artículos sobre Salud Mental. Asimismo, la revisión de la literatura pone de manifiesto que el sexo femenino tiene mayor vulnerabilidad en comparación con los del sexo masculino para desarrollar diferentes trastornos mentales, lo que amerita realizar un seguimiento oportuno e incentivar programas específicos de promoción y prevención de la salud mental en adolescentes universitarios para elevar su potencial humano</h1>
                     </div>
                 </section>
                 <section className={style.contenido} id="healbot" style={{ display: selectedSection === 'healbot' ? 'flex' : 'none' }}>
@@ -193,8 +209,29 @@ function PrincipalPage() {
                 <section className={style.contenido} id="asesor" style={{ display: selectedSection === 'asesor' ? 'flex' : 'none' }}>
                     asesor
                 </section>
-                <section className={style.contenido} id="historial" style={{ display: selectedSection === 'historial' ? 'flex' : 'none' }}>
-                    Historial de diagnóstico
+                <section className={style.contenidohistorial} id="historial" style={{ display: selectedSection === 'historial' ? 'flex' : 'none' }}>
+                    <h1 className={style.titulohistorial}>Historial de diagnósticos</h1>
+                    <div className={style.diagnosticoenhistorial}>
+                        <ul>
+                            {diagnosticos.map((diagnostico, index) => (
+                                <li key={index}>
+                                    <p>Fecha: {diagnostico.fecha}</p>
+                                    <p>Preguntas:</p>
+                                    <ul>
+                                        {diagnostico.preguntas.map((pregunta, index) => (
+                                            <li key={index}>{pregunta.pregunta}: {pregunta.respuesta}</li>
+                                        ))}
+                                    </ul>
+                                    <p>Diagnóstico:</p>
+                                    <ul>
+                                        {diagnostico.diagnóstico.map((item, index) => (
+                                            <li key={index}>{item.tipo}: {item.resultado ? 'Sí' : 'No'}</li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </section>
                 <section className={style.contenido} id="logout" style={{ display: selectedSection === 'logout' ? 'flex' : 'none' }}></section>
             </div>

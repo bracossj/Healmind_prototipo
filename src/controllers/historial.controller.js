@@ -7,7 +7,8 @@ export const createHistorial = async (req, res) => {
         const nuevoHistorial = new Historial({
             userid,
             preguntas,
-            diagnóstico
+            diagnóstico,
+            fecha: new Date()
         });
         await nuevoHistorial.save();
     } catch (error) {
@@ -26,4 +27,3 @@ export const getDiagnosticosByUserId = async (req, res) => {
         return null;
     }
 };
-
