@@ -20,7 +20,7 @@ export const getDiagnosticosByUserId = async (req, res) => {
     const { userId } = req.params;
 
     try {
-        const diagnosticos = await Historial.find({ userid: userId });
+        const diagnosticos = await Historial.find({ userid: userId }).sort({ fecha: -1 });
         res.json({ diagnosticos });
     } catch (error) {
         console.error('Error al obtener los diagnósticos:', error);

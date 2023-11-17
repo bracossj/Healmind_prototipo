@@ -7,6 +7,7 @@ import healbot from '../img/healbot.png';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { guardarDiagnostico, obtenerDiagnosticos } from '../api/historial.js';
+import { obtenerProfesionales } from '../api/auth.js';
 
 function PrincipalPage() {
     const { signout, user } = useAuth();
@@ -118,7 +119,28 @@ function PrincipalPage() {
         };
 
         cargarDiagnosticos();
-    }, [user.id]);
+    }, [user.id, selectedSection]);
+
+    function formatDate(dateTimeString) {
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+        const formattedDate = new Date(dateTimeString).toLocaleDateString('es-ES', options);
+        return formattedDate;
+    }
+
+    const [profesionales, setProfesionales] = useState([]);
+    useEffect(() => {
+        const cargarProfesionales = async () => {
+            try {
+                const response = await obtenerProfesionales();
+                setProfesionales(response);
+            } catch (error) {
+                console.error('Error al cargar la lista de profesionales:', error);
+            }
+        };
+        if (selectedSection === 'asesor') {
+            cargarProfesionales();
+        }
+    }, [selectedSection]);
 
 
     return (
@@ -166,7 +188,7 @@ function PrincipalPage() {
                         <h1>El adolescente vive una etapa de adaptación a los cambios vertiginosos, que representa una etapa crítica en el inicio y fortalecimiento de conductas de riesgo. El objetivo fue describir la producción científica indexada en la base de datos Scopus sobre el tema de salud mental en adolescentes universitarios desde 2018-2020 en Latinoamérica. La metodología fue una revisión exhaustiva de artículos, utilizando términos como: salud mental, estrés, ansiedad e ideación suicida. Los criterios incluidos fueron: año, idioma, metodología, instrumentos validados, resultados y conclusión. Los resultados evidenciaron 11 artículos sobre Salud Mental. Asimismo, la revisión de la literatura pone de manifiesto que el sexo femenino tiene mayor vulnerabilidad en comparación con los del sexo masculino para desarrollar diferentes trastornos mentales, lo que amerita realizar un seguimiento oportuno e incentivar programas específicos de promoción y prevención de la salud mental en adolescentes universitarios para elevar su potencial humano</h1>
                     </div>
                 </section>
-                <section className={style.contenido} id="healbot" style={{ display: selectedSection === 'healbot' ? 'flex' : 'none' }}>
+                <section className={style.contenidohealbot} id="healbot" style={{ display: selectedSection === 'healbot' ? 'flex' : 'none' }}>
                     <div className={style.chat_box}>
                         <div className={style.chat_chat}>
                             <h1 className={style.chat_header}>HealBot</h1>
@@ -187,7 +209,7 @@ function PrincipalPage() {
                         </div>
                     </div>
                 </section>
-                <section className={style.contenido} id="healbotresult" style={{ display: selectedSection === 'healbotresult' ? 'flex' : 'none' }}>
+                <section className={style.contenidoresult} id="healbotresult" style={{ display: selectedSection === 'healbotresult' ? 'flex' : 'none' }}>
                     <div className={style.chat_boxR}>
                         <h1 className={style.resultadodiagnostico}>
                             {diagnóstico && (
@@ -206,8 +228,16 @@ function PrincipalPage() {
                         </h1>
                     </div>
                 </section>
-                <section className={style.contenido} id="asesor" style={{ display: selectedSection === 'asesor' ? 'flex' : 'none' }}>
-                    asesor
+                <section className={style.contenidoprofesionales} id="asesor" style={{ display: selectedSection === 'asesor' ? 'flex' : 'none' }}>
+                    <h1 className={style.tituloprofesionales}>Profesionales Disponibles</h1>
+                    <div className={style.profesionalesContainer}>
+                        {profesionales.map((profesional, index) => (
+                            <div className={style.profesionalCard} key={index}>
+                                <p>{profesional.name} {profesional.lastname}</p>
+                                <p>{profesional.email}</p>
+                            </div>
+                        ))}
+                    </div>
                 </section>
                 <section className={style.contenidohistorial} id="historial" style={{ display: selectedSection === 'historial' ? 'flex' : 'none' }}>
                     <h1 className={style.titulohistorial}>Historial de diagnósticos</h1>
@@ -215,7 +245,7 @@ function PrincipalPage() {
                         <ul>
                             {diagnosticos.map((diagnostico, index) => (
                                 <li key={index}>
-                                    <p>Fecha: {diagnostico.fecha}</p>
+                                    <p>Fecha: {formatDate(diagnostico.fecha)}</p>
                                     <p>Preguntas:</p>
                                     <ul>
                                         {diagnostico.preguntas.map((pregunta, index) => (
@@ -233,7 +263,7 @@ function PrincipalPage() {
                         </ul>
                     </div>
                 </section>
-                <section className={style.contenido} id="logout" style={{ display: selectedSection === 'logout' ? 'flex' : 'none' }}></section>
+                <section id="logout" style={{ display: selectedSection === 'logout' ? 'flex' : 'none' }}></section>
             </div>
         </div >
     )

@@ -80,8 +80,6 @@ export const profile = async (req, res) => {
     });
 }
 
-// Professionals
-
 export const registerP = async (req, res) => {
     const { name, lastname, email, password } = req.body
 
@@ -112,7 +110,15 @@ export const registerP = async (req, res) => {
     }
 };
 
-// VERIFICAR TOKEN
+export const verprofesionales = async (req, res) => {
+    try {
+        const professionals = await Professional.find({}, 'name lastname email'); // Solo seleccionar los campos deseados
+        res.json({ professionals });
+    } catch (error) {
+        console.error('Error al obtener todos los profesionales:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
 
 export const verifyToken = async (req, res) => {
     const { token } = req.cookies

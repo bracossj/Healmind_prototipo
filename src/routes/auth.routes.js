@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login, logout, profile, registerP, verifyToken } from '../controllers/auth.controller.js';
+import { register, login, logout, profile, registerP, verprofesionales, verifyToken } from '../controllers/auth.controller.js';
 import { authRequired } from '../middlewares/validateToken.js'
 import { validateSchema } from '../middlewares/validator.middleware.js';
 import { registerSchema, loginSchema } from '../schemas/auth.schema.js';
@@ -16,6 +16,8 @@ router.post('/logout', logout);
 router.get('/profile', authRequired, profile);
 
 router.post('/registerP', registerP);
+
+router.get('/verprofesionales', verprofesionales);
 
 router.get('/verify', verifyToken);
 
