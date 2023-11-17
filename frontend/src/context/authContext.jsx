@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-
     useEffect(() => {
         const checkLogin = async () => {
             const cookies = Cookies.get();
@@ -70,7 +69,6 @@ export const AuthProvider = ({ children }) => {
         };
         checkLogin();
     }, []);
-
 
     return (
         <authContext.Provider value={{

@@ -1,19 +1,17 @@
 import mongoose from 'mongoose';
 
 const historialSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
+    userid: {
+        type: String,
     },
     preguntas: [{
         pregunta: String,
         respuesta: String,
     }],
-    diagnostico: {
+    diagnóstico: [{
         tipo: String,
         resultado: Boolean,
-    },
+    }],
 });
 
 export default mongoose.model('Historial', historialSchema);

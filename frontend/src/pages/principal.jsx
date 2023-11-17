@@ -6,11 +6,10 @@ import { useAuth } from '../context/authContext.jsx';
 import healbot from '../img/healbot.png';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { guardarDiagnostico, obtenerDiagnosticos } from '../api/historial.js';
 
 function PrincipalPage() {
-
-    const { user } = useAuth();
-
+    const { signout, user } = useAuth();
     const [selectedSection, setSelectedSection] = useState('inicio');
     const navigate = useNavigate();
     const handleSectionChange = (sectionId) => {
@@ -18,12 +17,13 @@ function PrincipalPage() {
             signout();
             navigate("/");
         } else {
+            setRespuestas([]);
+            setTipoActual('estrés');
+            setIndicePregunta(0);
+            setDiagnóstico(null);
             setSelectedSection(sectionId);
         }
     };
-
-    const { signout } = useAuth();
-
     const [tiposPregunta, setTiposPregunta] = useState(['estrés', 'ansiedad', 'depresión']);
     const [respuestas, setRespuestas] = useState([]);
     const [tipoActual, setTipoActual] = useState('estrés');
@@ -34,15 +34,6 @@ function PrincipalPage() {
         depresión: [],
     });
     const [diagnóstico, setDiagnóstico] = useState(null);
-
-    useEffect(() => {
-        setPreguntasPorTipo({
-            estrés: stressQuestions.preguntas,
-            ansiedad: anxietyQuestions.preguntas,
-            depresión: depressionQuestions.preguntas,
-        });
-    }, []);
-
     const handleRespuesta = (respuesta) => {
         const preguntaActual = preguntasPorTipo[tipoActual][indicePregunta].pregunta;
         const nuevaRespuesta = { pregunta: preguntaActual, respuesta, tipo: tipoActual };
@@ -62,7 +53,6 @@ function PrincipalPage() {
             }
         }
     };
-
     const evaluarRespuestas = (respuestas) => {
         const respuestasEstrés = respuestas.filter((respuesta) => respuesta.tipo === 'estrés');
         const respuestasAnsiedad = respuestas.filter((respuesta) => respuesta.tipo === 'ansiedad');
@@ -73,13 +63,48 @@ function PrincipalPage() {
             return respuestas.filter((respuesta) => respuesta.respuesta === 'Sí').length;
         };
 
-        setDiagnóstico({
+        const nuevoDiagnóstico = {
             estrés: contarRespuestasPositivas(respuestasEstrés) >= umbralDiagnóstico,
             ansiedad: contarRespuestasPositivas(respuestasAnsiedad) >= umbralDiagnóstico,
             depresión: contarRespuestasPositivas(respuestasDepresión) >= umbralDiagnóstico,
-        });
-        setSelectedSection('healbotresult');
+        };
+
+        setDiagnóstico(nuevoDiagnóstico);
     };
+    const handleGuardarDiagnostico = async () => {
+        try {
+            const preguntas = respuestas.map((respuesta) => ({
+                pregunta: respuesta.pregunta,
+                respuesta: respuesta.respuesta,
+            }));
+            const diagnósticoX = Object.keys(diagnóstico).map((tipo) => ({
+                tipo,
+                resultado: diagnóstico[tipo],
+            }));
+            await guardarDiagnostico(user.id, preguntas, diagnósticoX);
+        } catch (error) {
+            console.error('Error al guardar el diagnóstico:', error);
+        }
+    };
+
+    useEffect(() => {
+        setPreguntasPorTipo({
+            estrés: stressQuestions.preguntas,
+            ansiedad: anxietyQuestions.preguntas,
+            depresión: depressionQuestions.preguntas,
+        });
+    }, [user]);
+
+    useEffect(() => {
+        if (diagnóstico !== null) {
+            setSelectedSection('healbotresult');
+            handleGuardarDiagnostico();
+        }
+    }, [diagnóstico]);
+
+    if (user === null) {
+        window.location.reload();
+    }
 
     return (
         <div className={style.container}>
@@ -119,7 +144,11 @@ function PrincipalPage() {
             </div>
             <div>
                 <section className={style.contenido} id="inicio" style={{ display: selectedSection === 'inicio' ? 'flex' : 'none' }}>
-                    Inicio
+                    <div className={style.boxsaludo}>
+                        <h1 className={style.iniciosaludo}>
+                            {'Hola ' + user.name}
+                        </h1>
+                    </div>
                 </section>
                 <section className={style.contenido} id="healbot" style={{ display: selectedSection === 'healbot' ? 'flex' : 'none' }}>
                     <div className={style.chat_box}>
@@ -165,7 +194,7 @@ function PrincipalPage() {
                     asesor
                 </section>
                 <section className={style.contenido} id="historial" style={{ display: selectedSection === 'historial' ? 'flex' : 'none' }}>
-                    historial
+                    Historial de diagnóstico
                 </section>
                 <section className={style.contenido} id="logout" style={{ display: selectedSection === 'logout' ? 'flex' : 'none' }}></section>
             </div>

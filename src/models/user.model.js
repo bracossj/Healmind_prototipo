@@ -24,10 +24,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    diagnostico: {
-        type: Boolean,
-        default: false
-    },
+    diagnostico: [{
+        tipo: String,
+        resultado: Boolean
+    }],
     tipoDiagnostico: {
         type: String,
         default: null

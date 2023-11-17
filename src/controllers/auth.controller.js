@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import { token_secret } from '../config.js';
 
 export const register = async (req, res) => {
-    const { name, lastname, age, email, password } = req.body
+    const { name, lastname, age, email, password } = req.body;
 
     try {
         const UseremailFound = await User.findOne({ email });
@@ -112,6 +112,8 @@ export const registerP = async (req, res) => {
     }
 };
 
+// VERIFICAR TOKEN
+
 export const verifyToken = async (req, res) => {
     const { token } = req.cookies
 
@@ -125,8 +127,7 @@ export const verifyToken = async (req, res) => {
 
         return res.json({
             id: userFound._id,
-            name: userFound.name,
-            email: userFound.email
+            name: userFound.name
         });
     });
 };

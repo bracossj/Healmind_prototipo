@@ -191,3 +191,19 @@
     margin: 0 50px;
     color: white;
 }
+
+.iniciosaludo {
+    color: white;
+}
+
+.boxsaludo {
+    margin: auto;
+    border-radius: 5px;
+    width: 600px;
+    height: 300px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    background-color: #287bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
