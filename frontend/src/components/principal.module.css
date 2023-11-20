@@ -122,6 +122,13 @@
     margin-bottom: 30px;
 }
 
+.contador {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    padding-left: 180px;
+}
+
 .botimg {
     width: 80px;
     height: 80px;
@@ -189,8 +196,8 @@
 
 .boxsaludo {
     border-radius: 5px;
-    width: 900px;
-    height: 240px;
+    width: 700px;
+    height: 300px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     background-color: #287affa8;
     display: flex;

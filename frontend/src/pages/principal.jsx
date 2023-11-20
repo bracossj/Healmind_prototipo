@@ -13,6 +13,7 @@ function PrincipalPage() {
     const { signout, user } = useAuth();
     const [selectedSection, setSelectedSection] = useState('inicio');
     const navigate = useNavigate();
+    const [contador, setContador] = useState(1);
     const handleSectionChange = (sectionId) => {
         if (sectionId === 'logout') {
             signout();
@@ -23,6 +24,7 @@ function PrincipalPage() {
             setIndicePregunta(0);
             setDiagnóstico(null);
             setSelectedSection(sectionId);
+            setContador(1);
         }
     };
     const [tiposPregunta, setTiposPregunta] = useState(['estrés', 'ansiedad', 'depresión']);
@@ -35,6 +37,7 @@ function PrincipalPage() {
         depresión: [],
     });
     const [diagnóstico, setDiagnóstico] = useState(null);
+
     const handleRespuesta = (respuesta) => {
         const preguntaActual = preguntasPorTipo[tipoActual][indicePregunta].pregunta;
         const nuevaRespuesta = { pregunta: preguntaActual, respuesta, tipo: tipoActual };
@@ -44,16 +47,19 @@ function PrincipalPage() {
 
         if (indicePregunta < preguntasPorTipo[tipoActual].length - 1) {
             setIndicePregunta(indicePregunta + 1);
+            setContador(contador + 1);
         } else {
             const indiceTipo = tiposPregunta.indexOf(tipoActual);
             if (indiceTipo < tiposPregunta.length - 1) {
                 setTipoActual(tiposPregunta[indiceTipo + 1]);
                 setIndicePregunta(0);
+                setContador(contador + 1);
             } else {
                 evaluarRespuestas(respuestas);
             }
         }
     };
+
     const evaluarRespuestas = (respuestas) => {
         const respuestasEstrés = respuestas.filter((respuesta) => respuesta.tipo === 'estrés');
         const respuestasAnsiedad = respuestas.filter((respuesta) => respuesta.tipo === 'ansiedad');
@@ -72,6 +78,7 @@ function PrincipalPage() {
 
         setDiagnóstico(nuevoDiagnóstico);
     };
+
     const handleGuardarDiagnostico = async () => {
         try {
             const preguntas = respuestas.map((respuesta) => ({
@@ -193,6 +200,7 @@ function PrincipalPage() {
                         <div className={style.chat_chat}>
                             <h1 className={style.chat_header}>HealBot</h1>
                             <img className={style.botimg} src={healbot} alt="" />
+                            <div className={style.contador}>{contador}/23</div>
                         </div>
                         <div className={style.chat_container}>
                             {indicePregunta < preguntasPorTipo[tipoActual].length && (
